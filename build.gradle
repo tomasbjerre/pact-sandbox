@@ -1,0 +1,111 @@
+apply plugin: 'java-library'
+
+buildscript {
+  repositories {
+    mavenCentral()
+    mavenLocal()
+  }
+  dependencies {
+    classpath 'se.bjurr.gradle:gradle-scripts:2.+'
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:3.2.5"
+  }
+}
+
+allprojects {
+  apply plugin: 'java-library'
+
+  project.ext.buildConfig = [
+    repoType: "DEFAULT",
+    sourceCompatibility: 17,
+    targetCompatibility: 17,
+    staticCodeAnalysis: [
+      maxViolations: 0
+    ]
+  ]
+  apply from: project.buildscript.classLoader.getResource('main.gradle').toURI()
+
+  test {
+    useJUnitPlatform()
+  }
+
+  dependencies {
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+  }
+}
+
+project('provider-springboot', {
+  apply plugin: "org.springframework.boot"
+  apply plugin: 'io.spring.dependency-management'
+
+  dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  }
+
+  bootJar {
+    enabled = false
+  }
+
+  jar {
+    enabled = true
+  }
+})
+
+project('consumer-springboot-wiremock', {
+  apply plugin: "org.springframework.boot"
+  apply plugin: 'io.spring.dependency-management'
+
+  dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.maciejwalkowiak.spring:wiremock-spring-boot:2.1.2'
+    testImplementation 'se.bjurr.wiremockpact:wiremock-pact-extension-junit5:0.6.0'
+  }
+
+  bootJar {
+    enabled = false
+  }
+
+  jar {
+    enabled = true
+  }
+})
+
+project('consumer-springboot', {
+  apply plugin: "org.springframework.boot"
+  apply plugin: 'io.spring.dependency-management'
+
+  dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  }
+
+  bootJar {
+    enabled = false
+  }
+
+  jar {
+    enabled = true
+  }
+})
