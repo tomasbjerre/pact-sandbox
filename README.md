@@ -4,15 +4,17 @@ This repository is intended as a sandbox to help fiddle with Pact.
 
 It contains:
 
- - `client-factory` - A client factory with [RestEasy](https://resteasy.dev/).
- - `provider-api` - A JAXRS API.
- - `consumer-springboot` - Consumer with SpringBoot and API mocked with [Pact JVM](https://docs.pact.io/implementation_guides/jvm).
- - `consumer-springboot-wiremock` - Consumer with SpringBoot and API mocked with [wiremock-pact](https://github.com/wiremock/wiremock-pact).
- - `provider-springboot` - Provider with SpringBoot and provider-test with [Pact JVM](https://docs.pact.io/implementation_guides/jvm).
+- `client-factory` - A client factory with [RestEasy](https://resteasy.dev/).
+- `provider-api` - A JAXRS API.
+- `consumer-springboot` - Consumer with SpringBoot and API mocked with [Pact JVM](https://docs.pact.io/implementation_guides/jvm).
+- `consumer-springboot-wiremock` - Consumer with SpringBoot and API mocked with [wiremock-pact](https://github.com/wiremock/wiremock-pact).
+- `provider-springboot` - Provider with SpringBoot and provider-test with [Pact JVM](https://docs.pact.io/implementation_guides/jvm).
+
+Build it with `./gradlew build`. Needs Java 17, get that with [SDKMAN](https://sdkman.io/).
 
 ## Upload Pacts
 
-There are some alternatives for publishing Pacts here: https://docs.pact.io/pact_broker/publishing_and_retrieving_pacts
+There are some alternatives for publishing Pacts here: <https://docs.pact.io/pact_broker/publishing_and_retrieving_pacts>
 
 I made [a script using `curl`](https://github.com/tomasbjerre/pactflow-publish-sh), it can be used like this:
 
@@ -32,7 +34,7 @@ I made [a script using `curl`](https://github.com/tomasbjerre/pactflow-publish-s
  --participant-version-number=$participant_version_number
 ```
 
-After this command, you can see the published pact here: https://test.pactflow.io/
+After this command, you can see the published pact here: <https://test.pactflow.io/>
 
 ## Consumer SpringBoot WireMock
 
