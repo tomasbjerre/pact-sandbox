@@ -96,6 +96,8 @@ project('consumer-springboot', {
     implementation 'org.jboss.resteasy:resteasy-client:6.2.9.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'au.com.dius.pact:consumer:4.6.9'
+	testImplementation 'au.com.dius.pact.consumer:junit5:4.6.9'
   }
 
   bootJar {
@@ -122,7 +124,11 @@ project('provider-springboot', {
 	testImplementation 'au.com.dius.pact.provider:junit5:4.6.9'
 	testImplementation 'au.com.dius.pact.provider:spring6:4.6.9'
   }
-
+  
+  test {
+	systemProperties['pact.rootDir'] = "$buildDir/src/test/resources/pact-json"
+  }
+  
   bootJar {
     enabled = false
   }
