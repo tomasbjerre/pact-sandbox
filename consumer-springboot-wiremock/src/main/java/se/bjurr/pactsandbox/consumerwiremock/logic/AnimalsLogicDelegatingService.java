@@ -1,7 +1,6 @@
 package se.bjurr.pactsandbox.consumerwiremock.logic;
 
 import org.springframework.stereotype.Service;
-
 import se.bjurr.pactsandbox.consumerwiremock.integration.IntegrationDelegatingService;
 import se.bjurr.pactsandbox.provider.api.model.AnimalsIntegrationVO;
 

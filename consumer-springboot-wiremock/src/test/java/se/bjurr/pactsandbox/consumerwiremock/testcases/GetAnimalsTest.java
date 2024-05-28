@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import se.bjurr.pactsandbox.consumerwiremock.testutils.WireMockPactBaseTest;
 
 @SpringBootTest
@@ -19,8 +18,8 @@ import se.bjurr.pactsandbox.consumerwiremock.testutils.WireMockPactBaseTest;
 @TestPropertySource(locations = "classpath:autotest.properties")
 public class GetAnimalsTest extends WireMockPactBaseTest {
 
-	  @Autowired public MockMvc mockMvc;
-	  
+  @Autowired public MockMvc mockMvc;
+
   @Test
   public void testGetAnimal() throws Exception {
     final MvcResult actual = this.mockMvc.perform(get("/animals")).andDo(log()).andReturn();
@@ -28,7 +27,8 @@ public class GetAnimalsTest extends WireMockPactBaseTest {
     assertThat(actual.getResponse().getStatus()).isEqualTo(200);
 
     assertThat(actual.getResponse().getContentAsString())
-        .isEqualToIgnoringNewLines("""
+        .isEqualToIgnoringNewLines(
+            """
 {
   "animals" : [ {
     "id" : "1",

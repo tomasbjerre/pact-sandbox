@@ -1,9 +1,7 @@
 package se.bjurr.pactsandbox.consumerwiremock.presentation;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import se.bjurr.pactsandbox.consumerwiremock.presentation.model.AnimalDTO;
 import se.bjurr.pactsandbox.consumerwiremock.presentation.model.AnimalsDTO;
 import se.bjurr.pactsandbox.provider.api.model.AnimalIntegrationVO;

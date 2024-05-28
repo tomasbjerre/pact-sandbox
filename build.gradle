@@ -7,7 +7,7 @@ buildscript {
   }
   dependencies {
     classpath 'se.bjurr.gradle:gradle-scripts:2.+'
-    classpath "org.springframework.boot:spring-boot-gradle-plugin:3.2.5"
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.3.0'
   }
 }
 
@@ -29,7 +29,7 @@ allprojects {
   }
 
   dependencies {
-    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'org.assertj:assertj-core:3.26.0'
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.platform:junit-platform-launcher'
@@ -38,40 +38,18 @@ allprojects {
 
 project('provider-api', {
   dependencies {
-    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
-    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+    api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.1'
+    api 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.1'
   }
 })
 
 project('client-factory', {
   dependencies {
-    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
-    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
-    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
-  }
-})
-
-project('provider-springboot', {
-  apply plugin: "org.springframework.boot"
-  apply plugin: 'io.spring.dependency-management'
-
-  dependencies {
-	implementation project(":provider-api")
-	implementation project(":client-factory")
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  }
-
-  bootJar {
-    enabled = false
-  }
-
-  jar {
-    enabled = true
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.1'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.1'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.9.Final'
   }
 })
 
@@ -84,10 +62,10 @@ project('consumer-springboot-wiremock', {
 	implementation project(":client-factory")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
-    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
-    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.1'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.1'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.9.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'com.maciejwalkowiak.spring:wiremock-spring-boot:2.1.2'
@@ -112,12 +90,37 @@ project('consumer-springboot', {
 	implementation project(":client-factory")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
-    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
-    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.1'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.1'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.9.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  }
+
+  bootJar {
+    enabled = false
+  }
+
+  jar {
+    enabled = true
+  }
+})
+
+project('provider-springboot', {
+  apply plugin: "org.springframework.boot"
+  apply plugin: 'io.spring.dependency-management'
+
+  dependencies {
+	implementation project(":provider-api")
+	implementation project(":client-factory")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:5.12.0'
+	testImplementation 'au.com.dius.pact.provider:junit5:4.6.9'
+	testImplementation 'au.com.dius.pact.provider:spring6:4.6.9'
   }
 
   bootJar {
