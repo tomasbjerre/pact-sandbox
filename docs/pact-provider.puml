@@ -1,0 +1,59 @@
+
+@startuml pact-provider
+skin rose
+
+Control "CI Pipeline" as CI
+
+participant "Integration Test" as IT
+box "System Under Test" #LightBlue
+    participant "Presentation" as SUT
+    participant "Logic" as LOGIC
+    participant "Logic (Mocked)" as LOGICMOCK
+    participant "Integration" as INT
+end box
+participant "Pact JVM" as PJVM #LightBlue
+
+Collections "Filesystem" as FS
+database "Pact Broker" as BROKER
+
+CI -> IT
+activate IT
+    IT -> PJVM: Get Pacts
+    activate PJVM
+        PJVM -> BROKER
+        activate BROKER
+            BROKER --> PJVM
+        deactivate BROKER
+        PJVM --> IT
+    deactivate PJVM
+
+    loop #LightGreen Run all consumer pacts
+        alt Test only presentation layer
+            IT -> SUT
+            activate SUT
+                SUT -> LOGICMOCK
+                activate LOGICMOCK
+                    LOGICMOCK --> SUT
+                deactivate LOGICMOCK
+                SUT --> IT
+            deactivate SUT
+        else Test functional
+            IT -> SUT
+            activate SUT
+                SUT -> LOGIC
+                activate LOGIC
+                    LOGIC -> INT
+                    activate INT
+                        INT --> LOGIC
+                    deactivate INT
+                    LOGIC --> SUT
+                deactivate LOGIC
+                SUT --> IT
+            deactivate SUT
+        end alt
+    end
+
+    IT --> CI
+deactivate IT
+
+@enduml

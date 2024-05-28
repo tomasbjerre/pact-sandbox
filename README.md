@@ -41,3 +41,7 @@ After this command, you can see the published pact here: https://test.pactflow.i
 ## Consumer SpringBoot Pact JVM
 
 ![Pact With Pact JVM](/docs/pact-with-pactjvm.png)
+
+## Provider SpringBoot Pact JVM
+
+![Provider With Pact JVM](/docs/pact-provider.png)
