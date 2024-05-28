@@ -1,4 +1,4 @@
-package se.bjurr.pactsandbox.consumerwiremock.integration.api.model;
+package se.bjurr.pactsandbox.provider.api.model;
 
 public class AnimalIntegrationVO {
   private final String id;

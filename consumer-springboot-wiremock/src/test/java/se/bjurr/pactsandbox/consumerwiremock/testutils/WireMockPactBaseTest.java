@@ -1,10 +1,12 @@
 package se.bjurr.pactsandbox.consumerwiremock.testutils;
 
+import org.junit.jupiter.api.extension.RegisterExtension;
+
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.maciejwalkowiak.wiremock.spring.ConfigureWireMock;
 import com.maciejwalkowiak.wiremock.spring.EnableWireMock;
 import com.maciejwalkowiak.wiremock.spring.WireMockConfigurationCustomizer;
-import org.junit.jupiter.api.extension.RegisterExtension;
+
 import se.bjurr.wiremockpact.wiremockpactextensionjunit5.WireMockPactExtension;
 import se.bjurr.wiremockpact.wiremockpactlib.api.WireMockPactConfig;
 
@@ -20,7 +22,7 @@ public class WireMockPactBaseTest implements WireMockConfigurationCustomizer {
   static WireMockPactExtension WIREMOCK_PACT_EXTENSION =
       new WireMockPactExtension(
           WireMockPactConfig.builder() //
-              .setConsumerDefaultValue("WireMockPactExample") //
+              .setConsumerDefaultValue("PactSandboxConsumer") //
               .setProviderDefaultValue("UnknownProvider") //
               .setPactJsonFolder("src/test/resources/pact-json"));
 

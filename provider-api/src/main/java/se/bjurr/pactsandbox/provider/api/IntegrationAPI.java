@@ -1,4 +1,4 @@
-package se.bjurr.pactsandbox.consumerwiremock.integration.api;
+package se.bjurr.pactsandbox.provider.api;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -7,8 +7,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import se.bjurr.pactsandbox.consumerwiremock.integration.api.model.AnimalIntegrationVO;
-import se.bjurr.pactsandbox.consumerwiremock.integration.api.model.AnimalsIntegrationVO;
+import se.bjurr.pactsandbox.provider.api.model.AnimalIntegrationVO;
+import se.bjurr.pactsandbox.provider.api.model.AnimalsIntegrationVO;
 
 @Path("/")
 public interface IntegrationAPI {

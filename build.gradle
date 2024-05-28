@@ -36,17 +36,32 @@ allprojects {
   }
 }
 
+project('provider-api', {
+  dependencies {
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+  }
+})
+
+project('client-factory', {
+  dependencies {
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
+    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
+    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
+  }
+})
+
 project('provider-springboot', {
   apply plugin: "org.springframework.boot"
   apply plugin: 'io.spring.dependency-management'
 
   dependencies {
+	implementation project(":provider-api")
+	implementation project(":client-factory")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.17.0'
-    implementation 'com.fasterxml.jackson.jakarta.rs:jackson-jakarta-rs-json-provider:2.17.0'
-    implementation 'org.jboss.resteasy:resteasy-client:6.2.8.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
   }
@@ -65,6 +80,8 @@ project('consumer-springboot-wiremock', {
   apply plugin: 'io.spring.dependency-management'
 
   dependencies {
+	implementation project(":provider-api")
+	implementation project(":client-factory")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
@@ -91,6 +108,8 @@ project('consumer-springboot', {
   apply plugin: 'io.spring.dependency-management'
 
   dependencies {
+	implementation project(":provider-api")
+	implementation project(":client-factory")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'

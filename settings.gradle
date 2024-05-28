@@ -1,3 +1,3 @@
 rootProject.name = 'pact-sandbox'   
 
-include 'provider-springboot', 'consumer-springboot', 'consumer-springboot-wiremock'
+include 'client-factory', 'provider-api', 'provider-springboot', 'consumer-springboot', 'consumer-springboot-wiremock'
