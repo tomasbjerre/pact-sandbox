@@ -35,5 +35,9 @@ I made [a script using `curl`](https://github.com/tomasbjerre/pactflow-publish-s
 After this command, you can see the published pact here: https://test.pactflow.io/
 
 ## Consumer SpringBoot WireMock
- 
+
 ![Pact With WireMock](/docs/pact-with-wiremock.png)
+
+## Consumer SpringBoot Pact JVM
+
+![Pact With Pact JVM](/docs/pact-with-pactjvm.png)

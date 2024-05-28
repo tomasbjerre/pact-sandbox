@@ -1,0 +1,57 @@
+
+@startuml pact-with-pactjvm
+skin rose
+
+Control "CI Pipeline" as CI
+
+participant "Integration Test" as IT
+box "System Under Test" #LightBlue
+    participant "Presentation"
+    participant "Logic"
+    participant "Integration" as SUT
+end box
+participant "Pact JVM" as PJVM #LightBlue
+
+Collections "Filesystem" as FS
+database "Pact Broker" as BROKER
+
+CI -> IT
+activate IT
+    IT -> PJVM: Setup Pacts
+    activate PJVM
+        PJVM --> IT
+    deactivate PJVM
+
+    loop #LightGreen Run all integration tests
+    IT -> SUT
+    activate SUT
+        SUT -> PJVM
+        activate PJVM
+            PJVM --> SUT
+        deactivate PJVM
+        SUT --> IT
+    deactivate SUT
+    end
+
+    IT -> PJVM: Save
+    activate PJVM
+        PJVM -> FS: Save Pact JSON
+        activate FS
+            FS --> PJVM
+        deactivate FS
+        PJVM --> IT
+    deactivate PJVM
+
+    IT --> CI
+deactivate IT
+
+CI -> FS: Get Pact JSON
+activate FS
+    FS --> CI
+deactivate FS
+
+CI -> BROKER: Publish Pact JSON
+activate BROKER
+    BROKER --> CI
+deactivate BROKER
+@enduml

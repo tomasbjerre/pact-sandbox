@@ -4,12 +4,10 @@ skin rose
 
 Control "CI Pipeline" as CI
 
-box "Application"
-    participant "Integration Test" as IT
-    participant "System Under Test" as SUT
-    participant "WireMock" as WM
-    participant "WireMock Pact" as WMP #LightBlue
-end box
+participant "Integration Test" as IT
+participant "System Under Test" as SUT
+participant "WireMock" as WM
+participant "WireMock Pact" as WMP #LightBlue
 
 Collections "Filesystem" as FS
 database "Pact Broker" as BROKER
