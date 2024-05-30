@@ -1,6 +1,6 @@
 # Pact Sandbox
 
-This repository is intended as a sandbox to help fiddle with Pact.
+This repository is intended as a sandbox to help fiddle with [Pact](https://docs.pact.io/).
 
 It contains:
 
@@ -47,3 +47,16 @@ After this command, you can see the published pact here: <https://test.pactflow.
 ## Provider SpringBoot Pact JVM
 
 ![Provider With Pact JVM](/docs/pact-provider.png)
+
+## Topics of discussion
+
+- What is the value of doing contract testing?
+  - You get contracts
+  - You get a mock
+  - It becomes easier to know which consumers, and providers, exist. Also how they depend on each other.
+  - ...
+
+- What if I already have a mock (like WireMock) and formal API specifications (like OpenAPI)?
+  - What features in the API:s are being used?
+  - Are all the attributes in each JSON object neccessary?
+  - ...
