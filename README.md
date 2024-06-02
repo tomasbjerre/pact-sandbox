@@ -55,6 +55,8 @@ After this command, you can see the published pact here: <https://test.pactflow.
   - You get a mock
   - It becomes easier to know which consumers, and providers, exist. Also how they depend on each other.
   - ...
+ 
+- If I, as a consumer, invent the contract. Does it require med to have knowledge of someone else domain?
 
 - What if I already have a mock (like WireMock) and formal API specifications (like OpenAPI)?
   - What features in the API:s are being used?
