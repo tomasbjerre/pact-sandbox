@@ -5,7 +5,7 @@ skin rose
 Control "CI Pipeline" as CI
 
 participant "Integration Test" as IT
-box "System Under Test" #LightBlue
+box "System Under Test"
     participant "Presentation"
     participant "Logic"
     participant "Integration" as SUT
