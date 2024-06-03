@@ -65,7 +65,7 @@ After this command, you can see the published pact here: <https://test.pactflow.
 
 ![Consumer And Provider](/docs/consumer-provider.png)
 
-- Perhaps the consumer should still do end to end testing of its consumed endpoints. But providers dont test its consumers.
+- Perhaps the consumer should still do end to end testing of its consumed endpoints. Providers rely on contract tests and does no other testing on its consumers.
   - `P1` would end to end test against `P2` and `P3`
   - `P2` would end to end test against `P3`. But let contract tests test `P1` against `P2`.
   - `P3` woud let contract tests test `P2` against `P3`.
