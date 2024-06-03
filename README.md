@@ -55,12 +55,17 @@ After this command, you can see the published pact here: <https://test.pactflow.
   - You get a mock
   - It becomes easier to know which consumers, and providers, exist. Also how they depend on each other.
   - ...
- 
+
 - If I, as a consumer, invent the contract. Does it require med to have knowledge of someone else domain?
 
 - What if I already have a mock (like WireMock) and formal API specifications (like OpenAPI)?
   - What features in the API:s are being used?
   - Are all the attributes in each JSON object neccessary?
   - ...
- 
+
+![Consumer And Provider](/docs/consumer-provider.png)
+
 - Perhaps the consumer should still do end to end testing of its consumed endpoints. But providers dont test its consumers.
+  - `P1` would end to end test against `P2` and `P3`
+  - `P2` would end to end test against `P3`. But let contract tests test `P1` against `P2`.
+  - `P3` woud let contract tests test `P2` against `P3`.
