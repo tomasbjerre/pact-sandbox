@@ -62,3 +62,5 @@ After this command, you can see the published pact here: <https://test.pactflow.
   - What features in the API:s are being used?
   - Are all the attributes in each JSON object neccessary?
   - ...
+ 
+- Perhaps the consumer should still do end to end testing of its consumed endpoints. But providers dont test its consumers.
